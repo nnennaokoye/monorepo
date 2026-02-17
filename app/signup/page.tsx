@@ -1,31 +1,31 @@
-"use client"
+"use client";
 
-import React from "react"
+import React from "react";
 
-import { useState } from "react"
-import Link from "next/link"
-import { ArrowRight, Eye, EyeOff, Check } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { useState } from "react";
+import Link from "next/link";
+import { ArrowRight, Eye, EyeOff, Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function SignupPage() {
-  const [showPassword, setShowPassword] = useState(false)
-  const [userType, setUserType] = useState<"tenant" | "landlord">("tenant")
+  const [showPassword, setShowPassword] = useState(false);
+  const [userType, setUserType] = useState<"tenant" | "landlord">("tenant");
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     phone: "",
     password: "",
-  })
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Handle signup
-  }
+  };
 
   const updateFormData = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }))
-  }
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   return (
     <main className="min-h-screen bg-muted flex items-center justify-center py-12 px-4">
@@ -34,7 +34,9 @@ export default function SignupPage() {
           <Link href="/" className="inline-block font-mono text-3xl font-black">
             SHELTA<span className="text-primary">FLEX</span>
           </Link>
-          <p className="mt-2 text-muted-foreground">Create your account to get started.</p>
+          <p className="mt-2 text-muted-foreground">
+            Create your account to get started.
+          </p>
         </div>
 
         <div className="border-3 border-foreground bg-card p-8 shadow-[8px_8px_0px_0px_rgba(26,26,26,1)]">
@@ -42,7 +44,9 @@ export default function SignupPage() {
 
           {/* User Type Selector */}
           <div className="mb-6">
-            <label className="mb-2 block font-mono text-sm font-bold">I am a</label>
+            <label className="mb-2 block font-mono text-sm font-bold">
+              I am a
+            </label>
             <div className="grid grid-cols-2 gap-3">
               <button
                 type="button"
@@ -71,7 +75,9 @@ export default function SignupPage() {
 
           {/* Whistleblower Option */}
           <div className="mb-6">
-            <p className="text-xs text-muted-foreground mb-2">Or earn money reporting vacant apartments:</p>
+            <p className="text-xs text-muted-foreground mb-2">
+              Or earn money reporting vacant apartments:
+            </p>
             <Link href="/whistleblower/signup">
               <Button className="w-full border-3 border-foreground bg-secondary px-4 py-3 font-mono font-bold transition-all shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                 Become a Whistleblower
@@ -79,10 +85,11 @@ export default function SignupPage() {
             </Link>
           </div>
 
-          {/* Form continues below... */}
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="mb-2 block font-mono text-sm font-bold">Full Name</label>
+              <label className="mb-2 block font-mono text-sm font-bold">
+                Full Name
+              </label>
               <Input
                 type="text"
                 value={formData.fullName}
@@ -94,7 +101,9 @@ export default function SignupPage() {
             </div>
 
             <div>
-              <label className="mb-2 block font-mono text-sm font-bold">Email Address</label>
+              <label className="mb-2 block font-mono text-sm font-bold">
+                Email Address
+              </label>
               <Input
                 type="email"
                 value={formData.email}
@@ -106,7 +115,9 @@ export default function SignupPage() {
             </div>
 
             <div>
-              <label className="mb-2 block font-mono text-sm font-bold">Phone Number</label>
+              <label className="mb-2 block font-mono text-sm font-bold">
+                Phone Number
+              </label>
               <Input
                 type="tel"
                 value={formData.phone}
@@ -118,7 +129,9 @@ export default function SignupPage() {
             </div>
 
             <div>
-              <label className="mb-2 block font-mono text-sm font-bold">Password</label>
+              <label className="mb-2 block font-mono text-sm font-bold">
+                Password
+              </label>
               <div className="relative">
                 <Input
                   type={showPassword ? "text" : "password"}
@@ -133,19 +146,40 @@ export default function SignupPage() {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                 >
-                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                  {showPassword ? (
+                    <EyeOff className="h-5 w-5" />
+                  ) : (
+                    <Eye className="h-5 w-5" />
+                  )}
                 </button>
               </div>
               <div className="mt-2 space-y-1">
                 {[
-                  { label: "At least 8 characters", valid: formData.password.length >= 8 },
-                  { label: "Contains a number", valid: /\d/.test(formData.password) },
+                  {
+                    label: "At least 8 characters",
+                    valid: formData.password.length >= 8,
+                  },
+                  {
+                    label: "Contains a number",
+                    valid: /\d/.test(formData.password),
+                  },
                 ].map((rule) => (
-                  <div key={rule.label} className="flex items-center gap-2 text-xs">
-                    <div className={`h-4 w-4 border-2 border-foreground flex items-center justify-center ${rule.valid ? 'bg-secondary' : 'bg-background'}`}>
+                  <div
+                    key={rule.label}
+                    className="flex items-center gap-2 text-xs"
+                  >
+                    <div
+                      className={`h-4 w-4 border-2 border-foreground flex items-center justify-center ${rule.valid ? "bg-secondary" : "bg-background"}`}
+                    >
                       {rule.valid && <Check className="h-3 w-3" />}
                     </div>
-                    <span className={rule.valid ? 'text-foreground' : 'text-muted-foreground'}>{rule.label}</span>
+                    <span
+                      className={
+                        rule.valid ? "text-foreground" : "text-muted-foreground"
+                      }
+                    >
+                      {rule.label}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -160,11 +194,17 @@ export default function SignupPage() {
                 />
                 <span className="text-sm text-muted-foreground">
                   I agree to the{" "}
-                  <Link href="/terms-of-service" className="font-bold border-b-2 border-foreground hover:text-primary">
+                  <Link
+                    href="/terms-of-service"
+                    className="font-bold border-b-2 border-foreground hover:text-primary"
+                  >
                     Terms of Service
                   </Link>{" "}
                   and{" "}
-                  <Link href="/privacy-policy" className="font-bold border-b-2 border-foreground hover:text-primary">
+                  <Link
+                    href="/privacy-policy"
+                    className="font-bold border-b-2 border-foreground hover:text-primary"
+                  >
                     Privacy Policy
                   </Link>
                 </span>
@@ -185,7 +225,10 @@ export default function SignupPage() {
           <div className="mt-6 text-center">
             <p className="text-muted-foreground">
               Already have an account?{" "}
-              <Link href="/login" className="font-bold text-primary hover:underline">
+              <Link
+                href="/login"
+                className="font-bold text-primary hover:underline"
+              >
                 Sign in
               </Link>
             </p>
@@ -193,5 +236,5 @@ export default function SignupPage() {
         </div>
       </div>
     </main>
-  )
+  );
 }
