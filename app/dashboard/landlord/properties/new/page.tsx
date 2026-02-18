@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import {
@@ -73,6 +73,7 @@ export default function NewPropertyPage() {
   const [step, setStep] = useState(1)
   const [images, setImages] = useState<RoomImage[]>([])
   const [selectedAmenities, setSelectedAmenities] = useState<string[]>([])
+  const imageIdCounterRef = useRef(0)
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -89,8 +90,9 @@ export default function NewPropertyPage() {
   const handleImageUpload = (roomType: string) => {
     // In a real app, this would open a file picker
     // For the mock, we'll simulate adding an image
+    imageIdCounterRef.current += 1
     const newImage: RoomImage = {
-      id: `${roomType}-${Date.now()}`,
+      id: `${roomType}-${imageIdCounterRef.current}`,
       roomType,
       preview: `/placeholder.svg?height=200&width=300&text=${roomType}`,
     }

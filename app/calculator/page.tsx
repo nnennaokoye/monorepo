@@ -10,13 +10,12 @@ export default function CalculatorPage() {
   const [annualRent, setAnnualRent] = useState(2400000)
   const [deposit, setDeposit] = useState(480000) // Default to 20% minimum
   const [duration, setDuration] = useState(12)
+  const scheduleBaseTime = Date.UTC(2025, 0, 1)
 
   const minDeposit = annualRent * 0.2 // Minimum 20% deposit required
   const maxDeposit = annualRent // Maximum 100% for those paying in full
   const totalAmount = annualRent - deposit // Amount Sheltaflex finances (rent only)
   const monthlyPayment = totalAmount / duration
-  const inspectionFee = totalAmount * 0.075; // Inspection fee calculation
-  const totalWithFee = totalAmount + inspectionFee; // Total amount including inspection fee
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat("en-NG", {
@@ -30,7 +29,7 @@ export default function CalculatorPage() {
   const paymentSchedule = Array.from({ length: duration }, (_, i) => ({
     month: i + 1,
     amount: monthlyPayment,
-    date: new Date(Date.now() + (i + 1) * 30 * 24 * 60 * 60 * 1000).toLocaleDateString("en-NG", {
+    date: new Date(scheduleBaseTime + (i + 1) * 30 * 24 * 60 * 60 * 1000).toLocaleDateString("en-NG", {
       month: "short",
       year: "numeric",
     }),

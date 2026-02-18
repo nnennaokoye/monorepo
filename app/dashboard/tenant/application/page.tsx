@@ -106,7 +106,7 @@ function formatCurrency(value: number) {
   }).format(value)
 }
 
-export default function ApplicationPage() {
+export default function TenantApplicationPage() {
   const searchParams = useSearchParams()
   const [isConfirmed, setIsConfirmed] = useState(false)
   const [hasAgreed, setHasAgreed] = useState(false)
@@ -115,6 +115,8 @@ export default function ApplicationPage() {
   const deposit = Number(searchParams.get("deposit")) || annualRent * 0.2
   const duration = Number(searchParams.get("duration")) || 12
   const propertyId = Number(searchParams.get("propertyId")) || 1
+
+  const applicationId = `#APP-2025-${propertyId}-${duration}-${deposit}-${annualRent}`
 
   const property = properties.find((p) => p.id === propertyId)
   const totalAmount = annualRent - deposit
@@ -150,7 +152,7 @@ export default function ApplicationPage() {
                   <div className="space-y-2 text-muted-foreground">
                     <div className="flex justify-between">
                       <span>Application ID:</span>
-                      <span className="font-mono font-bold">#APP-2025-{Math.random().toString(36).slice(2, 11).toUpperCase()}</span>
+                      <span className="font-mono font-bold">{applicationId}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Monthly Payment:</span>
