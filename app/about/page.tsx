@@ -106,7 +106,7 @@ export default function AboutPage() {
             {values.map((value) => (
               <div
                 key={value.title}
-                className="border-3 border-foreground bg-card p-6 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
+                className="border-3 border-foreground bg-card p-6 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
               >
                 <value.icon className="mb-4 h-10 w-10 text-primary" />
                 <h3 className="mb-2 font-mono text-xl font-bold">{value.title}</h3>
@@ -177,7 +177,7 @@ export default function AboutPage() {
             {team.map((member) => (
               <div
                 key={member.name}
-                className="border-3 border-foreground bg-card shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
+                className="border-3 border-foreground bg-card shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
               >
                 <div className={`aspect-square ${member.bg} flex items-center justify-center border-b-3 border-foreground`}>
                   <Users className="h-16 w-16 text-foreground/50" />
@@ -203,13 +203,13 @@ export default function AboutPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/signup">
-              <Button className="border-3 border-foreground bg-background px-8 py-6 text-lg font-bold text-foreground shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+              <Button className="border-3 border-foreground bg-background px-8 py-6 text-lg font-bold text-foreground shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                 Get Started
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link href="/properties">
-              <Button variant="outline" className="border-3 border-foreground bg-transparent px-8 py-6 text-lg font-bold text-foreground shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] hover:bg-background/10">
+              <Button variant="outline" className="border-3 border-foreground bg-transparent px-8 py-6 text-lg font-bold text-foreground shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] hover:bg-background/10">
                 Browse Properties
               </Button>
             </Link>

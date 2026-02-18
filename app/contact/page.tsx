@@ -63,8 +63,9 @@ export default function ContactPage() {
 
                 <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                   <div>
-                    <label className="mb-2 block text-sm font-bold">Name</label>
+                    <label htmlFor="contact-name" className="mb-2 block text-sm font-bold">Name</label>
                     <Input
+                      id="contact-name"
                       type="text"
                       name="name"
                       value={formData.name}
@@ -76,8 +77,9 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="mb-2 block text-sm font-bold">Email</label>
+                    <label htmlFor="contact-email" className="mb-2 block text-sm font-bold">Email</label>
                     <Input
+                      id="contact-email"
                       type="email"
                       name="email"
                       value={formData.email}
@@ -89,8 +91,9 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="mb-2 block text-sm font-bold">Phone (Optional)</label>
+                    <label htmlFor="contact-phone" className="mb-2 block text-sm font-bold">Phone (Optional)</label>
                     <Input
+                      id="contact-phone"
                       type="tel"
                       name="phone"
                       value={formData.phone}
@@ -101,8 +104,9 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="mb-2 block text-sm font-bold">Subject</label>
+                    <label htmlFor="contact-subject" className="mb-2 block text-sm font-bold">Subject</label>
                     <Input
+                      id="contact-subject"
                       type="text"
                       name="subject"
                       value={formData.subject}
@@ -114,8 +118,9 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="mb-2 block text-sm font-bold">Message</label>
+                    <label htmlFor="contact-message" className="mb-2 block text-sm font-bold">Message</label>
                     <textarea
+                      id="contact-message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
@@ -128,7 +133,7 @@ export default function ContactPage() {
 
                   <Button
                     type="submit"
-                    className="w-full border-3 border-foreground bg-primary py-4 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
+                    className="w-full border-3 border-foreground bg-primary py-4 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
                   >
                     <Send className="mr-2 h-4 w-4" />
                     Send Message
