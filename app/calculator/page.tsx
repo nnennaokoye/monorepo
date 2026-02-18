@@ -61,7 +61,7 @@ export default function CalculatorPage() {
                 {/* Annual Rent */}
                 <div className="mb-6 md:mb-8">
                   <div className="mb-3 flex flex-col gap-2 sm:mb-4 sm:flex-row sm:items-center sm:justify-between">
-                    <label className="font-mono text-xs font-bold sm:text-sm">Annual Rent</label>
+                    <p className="font-mono text-xs font-bold sm:text-sm">Annual Rent</p>
                     <span className="border-2 border-foreground bg-muted px-2 py-1 font-mono text-base font-black sm:px-3 sm:text-lg">
                       {formatCurrency(annualRent)}
                     </span>
@@ -83,7 +83,7 @@ export default function CalculatorPage() {
                 {/* Initial Deposit */}
                 <div className="mb-6 md:mb-8">
                   <div className="mb-3 flex flex-col gap-2 sm:mb-4 sm:flex-row sm:items-center sm:justify-between">
-                    <label className="font-mono text-xs font-bold sm:text-sm">Initial Deposit (Min. 20%)</label>
+                    <p className="font-mono text-xs font-bold sm:text-sm">Initial Deposit (Min. 20%)</p>
                     <span className="border-2 border-foreground bg-muted px-2 py-1 font-mono text-base font-black sm:px-3 sm:text-lg">
                       {formatCurrency(deposit)}
                     </span>
@@ -104,7 +104,7 @@ export default function CalculatorPage() {
 
                 {/* Duration */}
                 <div>
-                  <label className="mb-4 block font-mono text-sm font-bold">Payment Duration</label>
+                  <p className="mb-4 block font-mono text-sm font-bold">Payment Duration</p>
                   <div className="grid grid-cols-3 gap-3">
                     {[3, 6, 12].map((months) => (
                       <button
@@ -113,7 +113,7 @@ export default function CalculatorPage() {
                         className={`border-3 border-foreground p-4 font-mono font-bold transition-all ${
                           duration === months
                             ? "bg-primary text-primary-foreground shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]"
-                            : "bg-background shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
+                            : "bg-background shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
                         }`}
                       >
                         {months} Months
@@ -187,7 +187,7 @@ export default function CalculatorPage() {
 
                 <div className="mt-6">
                   <Link href={`/dashboard/tenant/application?amount=${annualRent}&deposit=${deposit}&duration=${duration}`}>
-                    <Button className="w-full border-3 border-foreground bg-primary px-8 py-6 text-lg font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+                    <Button className="w-full border-3 border-foreground bg-primary px-8 py-6 text-lg font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                       Apply Now
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
