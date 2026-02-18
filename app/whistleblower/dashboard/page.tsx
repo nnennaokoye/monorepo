@@ -86,7 +86,9 @@ export default function WhistleblowerDashboard() {
 
       {/* Mobile Overlay */}
       {sidebarOpen && (
-        <div
+        <button
+          type="button"
+          aria-label="Close sidebar"
           className="fixed inset-0 z-40 bg-foreground/50 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
@@ -248,7 +250,7 @@ export default function WhistleblowerDashboard() {
               </h2>
               {whistleblowerData.reportsThisMonth < 2 && (
                 <Link href="/whistleblower/report">
-                  <Button className="border-3 border-foreground bg-primary font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+                  <Button className="border-3 border-foreground bg-primary font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                     <Plus className="mr-2 h-4 w-4" />
                     Report Apartment
                   </Button>
@@ -314,9 +316,9 @@ export default function WhistleblowerDashboard() {
               Recent Earnings
             </h2>
             <div className="space-y-3">
-              {earnings.map((earning, idx) => (
+              {earnings.map((earning) => (
                 <Card
-                  key={idx}
+                  key={`${earning.listing}-${earning.date}-${earning.amount}-${earning.status}`}
                   className="border-3 border-foreground p-4 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]"
                 >
                   <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">

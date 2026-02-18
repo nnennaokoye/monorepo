@@ -125,9 +125,9 @@ export default function WhistleblowerVerificationPanel() {
           {/* Application List */}
           <div className="lg:col-span-1">
             <div className="mb-4 border-3 border-foreground bg-card p-4 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]">
-              <label className="text-sm font-bold mb-3 block">
+              <p className="text-sm font-bold mb-3 block">
                 Filter by Status
-              </label>
+              </p>
               <div className="grid grid-cols-2 gap-2">
                 {["pending", "approved", "rejected", "all"].map((status) => (
                   <button

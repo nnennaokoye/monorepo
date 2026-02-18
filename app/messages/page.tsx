@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useState, useRef, useEffect } from "react"
-import Link from "next/link"
+import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import {
   ArrowLeft,
   Search,
@@ -15,205 +15,73 @@ import {
   Clock,
   ImageIcon,
   File,
-  X,
   ChevronLeft,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
+import { conversations, messageThreads } from "@/lib/mockData";
 
-// Mock conversations
-const conversations = [
-  {
-    id: 1,
-    participant: {
-      name: "Adebayo Johnson",
-      role: "Agent",
-      avatar: "AJ",
-      online: true,
-    },
-    property: "Luxury 3 Bedroom Apartment",
-    lastMessage: "I'll schedule a viewing for tomorrow at 2pm",
-    timestamp: "2 min ago",
-    unread: 2,
-  },
-  {
-    id: 2,
-    participant: {
-      name: "Mrs. Adeleke",
-      role: "Landlord",
-      avatar: "MA",
-      online: false,
-    },
-    property: "Modern 2 Bedroom Flat",
-    lastMessage: "The maintenance has been completed",
-    timestamp: "1 hour ago",
-    unread: 0,
-  },
-  {
-    id: 3,
-    participant: {
-      name: "Emeka Nwosu",
-      role: "Agent",
-      avatar: "EN",
-      online: true,
-    },
-    property: "Spacious 4 Bedroom Duplex",
-    lastMessage: "Thank you for accepting my application!",
-    timestamp: "3 hours ago",
-    unread: 1,
-  },
-  {
-    id: 4,
-    participant: {
-      name: "Funmi Oladipo",
-      role: "Tenant",
-      avatar: "FO",
-      online: false,
-    },
-    property: "Luxury 3 Bedroom Apartment",
-    lastMessage: "When can I make the first payment?",
-    timestamp: "Yesterday",
-    unread: 0,
-  },
-  {
-    id: 5,
-    participant: {
-      name: "Chief Okonkwo",
-      role: "Landlord",
-      avatar: "CO",
-      online: false,
-    },
-    property: "Spacious 4 Bedroom Duplex",
-    lastMessage: "Please send me the tenant verification documents",
-    timestamp: "2 days ago",
-    unread: 0,
-  },
-]
-
-// Mock messages for the selected conversation
-const mockMessages: Record<number, Array<{
-  id: number
-  senderId: string
-  text: string
-  timestamp: string
-  status: "sent" | "delivered" | "read"
-  attachment?: { type: "image" | "document"; name: string }
-}>> = {
-  1: [
-    {
-      id: 1,
-      senderId: "other",
-      text: "Hello! I saw you're interested in the Luxury 3 Bedroom Apartment in Victoria Island.",
-      timestamp: "10:30 AM",
-      status: "read",
-    },
-    {
-      id: 2,
-      senderId: "me",
-      text: "Yes, I'd love to know more about it. Is it still available?",
-      timestamp: "10:32 AM",
-      status: "read",
-    },
-    {
-      id: 3,
-      senderId: "other",
-      text: "Absolutely! The apartment is still available. It features 3 spacious bedrooms, 2 bathrooms, and a modern kitchen. The living area has beautiful natural lighting.",
-      timestamp: "10:35 AM",
-      status: "read",
-    },
-    {
-      id: 4,
-      senderId: "other",
-      text: "Here are some photos of the interior",
-      timestamp: "10:36 AM",
-      status: "read",
-      attachment: { type: "image", name: "apartment_photos.jpg" },
-    },
-    {
-      id: 5,
-      senderId: "me",
-      text: "This looks amazing! Can I schedule a viewing?",
-      timestamp: "10:40 AM",
-      status: "read",
-    },
-    {
-      id: 6,
-      senderId: "other",
-      text: "Of course! When would be convenient for you?",
-      timestamp: "10:42 AM",
-      status: "read",
-    },
-    {
-      id: 7,
-      senderId: "me",
-      text: "How about tomorrow afternoon?",
-      timestamp: "10:45 AM",
-      status: "read",
-    },
-    {
-      id: 8,
-      senderId: "other",
-      text: "I'll schedule a viewing for tomorrow at 2pm",
-      timestamp: "10:47 AM",
-      status: "delivered",
-    },
-  ],
-}
+type Message = (typeof messageThreads)[number][number];
 
 export default function MessagesPage() {
-  const [selectedConversation, setSelectedConversation] = useState<number | null>(1)
-  const [searchQuery, setSearchQuery] = useState("")
-  const [newMessage, setNewMessage] = useState("")
-  const [messages, setMessages] = useState(mockMessages[1] || [])
-  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const [selectedConversationId, setSelectedConversationId] = useState<number | null>(1);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [newMessage, setNewMessage] = useState("");
+  const [messages, setMessages] = useState<Message[]>(messageThreads[1] ?? []);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
-    scrollToBottom()
-  }, [messages])
+    scrollToBottom();
+  }, [messages]);
 
   const handleSelectConversation = (id: number) => {
-    setSelectedConversation(id)
-    setMessages(mockMessages[id] || [])
-  }
+    setSelectedConversationId(id);
+    setMessages(messageThreads[id] || []);
+  };
 
   const handleSendMessage = () => {
-    if (!newMessage.trim()) return
+    if (!newMessage.trim()) return;
 
-    const newMsg = {
+    const newMsg: Message = {
       id: messages.length + 1,
       senderId: "me",
       text: newMessage,
-      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-      status: "sent" as const,
-    }
+      timestamp: new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+      status: "sent",
+    };
 
-    setMessages([...messages, newMsg])
-    setNewMessage("")
-  }
+    setMessages([...messages, newMsg]);
+    setNewMessage("");
+  };
 
   const filteredConversations = conversations.filter(
     (conv) =>
       conv.participant.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      conv.property.toLowerCase().includes(searchQuery.toLowerCase())
-  )
+      conv.property.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
 
-  const selectedConv = conversations.find((c) => c.id === selectedConversation)
+  const selectedConv = conversations.find((c) => c.id === selectedConversationId);
 
   return (
     <div className="flex h-screen bg-background pt-20">
       {/* Conversations List */}
-      <aside className={`w-full border-r-3 border-foreground bg-card md:w-80 lg:w-96 ${selectedConversation ? 'hidden md:block' : 'block'}`}>
+      <aside
+        className={`w-full border-r-3 border-foreground bg-card md:w-80 lg:w-96 ${selectedConversationId ? "hidden md:block" : "block"}`}
+      >
         <div className="border-b-3 border-foreground p-4">
           <div className="mb-4 flex items-center justify-between">
             <h1 className="text-2xl font-bold">Messages</h1>
@@ -244,7 +112,9 @@ export default function MessagesPage() {
               key={conv.id}
               onClick={() => handleSelectConversation(conv.id)}
               className={`w-full border-b-3 border-foreground p-4 text-left transition-colors ${
-                selectedConversation === conv.id ? "bg-muted" : "hover:bg-muted/50"
+                selectedConversationId === conv.id
+                  ? "bg-muted"
+                  : "hover:bg-muted/50"
               }`}
             >
               <div className="flex gap-3">
@@ -259,12 +129,18 @@ export default function MessagesPage() {
                 <div className="flex-1 overflow-hidden">
                   <div className="flex items-center justify-between">
                     <h3 className="font-bold">{conv.participant.name}</h3>
-                    <span className="text-xs text-muted-foreground">{conv.timestamp}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {conv.timestamp}
+                    </span>
                   </div>
-                  <p className="text-xs text-muted-foreground">{conv.participant.role}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {conv.participant.role}
+                  </p>
                   <div className="mt-1 flex items-center gap-2">
-                    <Building2 className="h-3 w-3 flex-shrink-0 text-muted-foreground" />
-                    <p className="truncate text-xs text-muted-foreground">{conv.property}</p>
+                    <Building2 className="h-3 w-3 shrink-0 text-muted-foreground" />
+                    <p className="truncate text-xs text-muted-foreground">
+                      {conv.property}
+                    </p>
                   </div>
                   <p className="mt-1 truncate text-sm">{conv.lastMessage}</p>
                 </div>
@@ -281,13 +157,15 @@ export default function MessagesPage() {
 
       {/* Chat Area */}
       {selectedConv ? (
-        <main className={`flex flex-1 flex-col ${selectedConversation ? 'block' : 'hidden md:block'}`}>
+        <main
+          className={`flex flex-1 flex-col ${selectedConversationId ? "block" : "hidden md:block"}`}
+        >
           {/* Chat Header */}
           <div className="flex items-center justify-between border-b-3 border-foreground bg-card p-3 md:p-4">
             <div className="flex items-center gap-2 md:gap-4">
               {/* Mobile back button */}
               <button
-                onClick={() => setSelectedConversation(null)}
+                onClick={() => setSelectedConversationId(null)}
                 className="flex h-10 w-10 items-center justify-center border-3 border-foreground bg-muted md:hidden"
               >
                 <ChevronLeft className="h-5 w-5" />
@@ -301,9 +179,13 @@ export default function MessagesPage() {
                 )}
               </div>
               <div className="min-w-0 flex-1">
-                <h2 className="truncate text-sm font-bold md:text-base">{selectedConv.participant.name}</h2>
+                <h2 className="truncate text-sm font-bold md:text-base">
+                  {selectedConv.participant.name}
+                </h2>
                 <div className="flex items-center gap-1 text-xs text-muted-foreground md:gap-2 md:text-sm">
-                  <span className="hidden sm:inline">{selectedConv.participant.role}</span>
+                  <span className="hidden sm:inline">
+                    {selectedConv.participant.role}
+                  </span>
                   <span className="hidden sm:inline">•</span>
                   <Building2 className="h-3 w-3 shrink-0" />
                   <span className="truncate">{selectedConv.property}</span>
@@ -314,14 +196,14 @@ export default function MessagesPage() {
               <Button
                 variant="outline"
                 size="icon"
-                className="hidden border-3 border-foreground bg-transparent shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] sm:flex"
+                className="hidden border-3 border-foreground bg-transparent shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] sm:flex"
               >
                 <Phone className="h-4 w-4" />
               </Button>
               <Button
                 variant="outline"
                 size="icon"
-                className="hidden border-3 border-foreground bg-transparent shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] sm:flex"
+                className="hidden border-3 border-foreground bg-transparent shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] sm:flex"
               >
                 <Video className="h-4 w-4" />
               </Button>
@@ -339,7 +221,9 @@ export default function MessagesPage() {
                   <DropdownMenuItem>View Property</DropdownMenuItem>
                   <DropdownMenuItem>View Profile</DropdownMenuItem>
                   <DropdownMenuItem>Block User</DropdownMenuItem>
-                  <DropdownMenuItem className="text-destructive">Report</DropdownMenuItem>
+                  <DropdownMenuItem className="text-destructive">
+                    Report
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
@@ -355,7 +239,9 @@ export default function MessagesPage() {
                     <Building2 className="h-6 w-6" />
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground">Conversation about</p>
+                    <p className="text-xs text-muted-foreground">
+                      Conversation about
+                    </p>
                     <p className="font-bold">{selectedConv.property}</p>
                   </div>
                   <Link href={`/properties/1`} className="ml-auto">
@@ -390,11 +276,15 @@ export default function MessagesPage() {
                         ) : (
                           <File className="h-4 w-4" />
                         )}
-                        <span className="text-xs">{message.attachment.name}</span>
+                        <span className="text-xs">
+                          {message.attachment.name}
+                        </span>
                       </div>
                     )}
                     <div className="mt-2 flex items-center justify-end gap-1">
-                      <span className="text-xs text-muted-foreground">{message.timestamp}</span>
+                      <span className="text-xs text-muted-foreground">
+                        {message.timestamp}
+                      </span>
                       {message.senderId === "me" && (
                         <>
                           {message.status === "read" && (
@@ -436,7 +326,7 @@ export default function MessagesPage() {
               <Button
                 onClick={handleSendMessage}
                 disabled={!newMessage.trim()}
-                className="border-3 border-foreground bg-primary px-4 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] disabled:opacity-50 md:px-6"
+                className="border-3 border-foreground bg-primary px-4 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] disabled:opacity-50 md:px-6"
               >
                 <Send className="h-5 w-5" />
               </Button>
@@ -457,5 +347,5 @@ export default function MessagesPage() {
         </main>
       )}
     </div>
-  )
+  );
 }

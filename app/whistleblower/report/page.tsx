@@ -40,7 +40,7 @@ export default function ReportApartmentPage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
       formData.address &&
@@ -76,10 +76,11 @@ export default function ReportApartmentPage() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Address */}
                 <div>
-                  <label className="text-sm font-bold mb-2 block">
+                  <label htmlFor="apartment-address" className="text-sm font-bold mb-2 block">
                     Apartment Address
                   </label>
                   <Input
+                    id="apartment-address"
                     type="text"
                     name="address"
                     value={formData.address}
@@ -96,10 +97,11 @@ export default function ReportApartmentPage() {
                 {/* Bedrooms and Bathrooms */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-bold mb-2 block">
+                    <label htmlFor="bedrooms" className="text-sm font-bold mb-2 block">
                       Bedrooms
                     </label>
                     <select
+                      id="bedrooms"
                       name="bedrooms"
                       value={formData.bedrooms}
                       onChange={handleInputChange}
@@ -114,10 +116,11 @@ export default function ReportApartmentPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="text-sm font-bold mb-2 block">
+                    <label htmlFor="bathrooms" className="text-sm font-bold mb-2 block">
                       Bathrooms
                     </label>
                     <select
+                      id="bathrooms"
                       name="bathrooms"
                       value={formData.bathrooms}
                       onChange={handleInputChange}
@@ -134,10 +137,11 @@ export default function ReportApartmentPage() {
 
                 {/* Annual Rent */}
                 <div>
-                  <label className="text-sm font-bold mb-2 block">
+                  <label htmlFor="annual-rent" className="text-sm font-bold mb-2 block">
                     Annual Rent (₦)
                   </label>
                   <Input
+                    id="annual-rent"
                     type="number"
                     name="annualRent"
                     value={formData.annualRent}
@@ -150,24 +154,25 @@ export default function ReportApartmentPage() {
 
                 {/* Description */}
                 <div>
-                  <label className="text-sm font-bold mb-2 block">
+                  <label htmlFor="description" className="text-sm font-bold mb-2 block">
                     Description
                   </label>
                   <textarea
+                    id="description"
                     name="description"
                     value={formData.description}
                     onChange={handleInputChange}
                     placeholder="Describe the apartment (features, amenities, condition, etc.)"
-                    className="w-full border-3 border-foreground px-3 py-3 font-bold bg-background min-h-[120px]"
+                    className="w-full border-3 border-foreground px-3 py-3 font-bold bg-background min-h-30"
                     rows={5}
                   />
                 </div>
 
                 {/* Photo Upload */}
                 <div>
-                  <label className="text-sm font-bold mb-2 block">
+                  <p className="text-sm font-bold mb-2 block">
                     Upload Photos (Minimum 3)
-                  </label>
+                  </p>
                   <div className="border-3 border-dashed border-foreground p-6 text-center cursor-pointer hover:bg-muted transition-colors">
                     <input
                       type="file"
@@ -214,7 +219,7 @@ export default function ReportApartmentPage() {
 
                 <Button
                   type="submit"
-                  className="w-full border-3 border-foreground bg-primary px-6 py-6 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
+                  className="w-full border-3 border-foreground bg-primary px-6 py-6 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
                 >
                   Submit Report
                 </Button>

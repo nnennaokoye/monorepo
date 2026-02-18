@@ -97,10 +97,11 @@ export default function WhistleblowerSignupPage() {
 
               <div className="space-y-4 mb-6">
                 <div>
-                  <label className="text-sm font-bold mb-2 block">
+                  <label htmlFor="full-name" className="text-sm font-bold mb-2 block">
                     Full Name
                   </label>
                   <Input
+                    id="full-name"
                     type="text"
                     name="fullName"
                     value={formData.fullName}
@@ -110,10 +111,11 @@ export default function WhistleblowerSignupPage() {
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-bold mb-2 block">
+                  <label htmlFor="email" className="text-sm font-bold mb-2 block">
                     Email Address
                   </label>
                   <Input
+                    id="email"
                     type="email"
                     name="email"
                     value={formData.email}
@@ -123,10 +125,11 @@ export default function WhistleblowerSignupPage() {
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-bold mb-2 block">
+                  <label htmlFor="phone" className="text-sm font-bold mb-2 block">
                     Phone Number
                   </label>
                   <Input
+                    id="phone"
                     type="tel"
                     name="phone"
                     value={formData.phone}
@@ -136,10 +139,11 @@ export default function WhistleblowerSignupPage() {
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-bold mb-2 block">
+                  <label htmlFor="address" className="text-sm font-bold mb-2 block">
                     Current Address (Where you live)
                   </label>
                   <Input
+                    id="address"
                     type="text"
                     name="address"
                     value={formData.address}
@@ -152,7 +156,7 @@ export default function WhistleblowerSignupPage() {
 
               <Button
                 onClick={handleStep1Submit}
-                className="w-full border-3 border-foreground bg-primary px-6 py-6 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
+                className="w-full border-3 border-foreground bg-primary px-6 py-6 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
               >
                 Continue to Verification
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -187,10 +191,11 @@ export default function WhistleblowerSignupPage() {
 
               <div className="space-y-4 mb-6">
                 <div>
-                  <label className="text-sm font-bold mb-2 block">
+                  <label htmlFor="linkedin-profile" className="text-sm font-bold mb-2 block">
                     LinkedIn Profile URL
                   </label>
                   <Input
+                    id="linkedin-profile"
                     type="url"
                     name="linkedinProfile"
                     value={formData.linkedinProfile}
@@ -203,10 +208,11 @@ export default function WhistleblowerSignupPage() {
                   </p>
                 </div>
                 <div>
-                  <label className="text-sm font-bold mb-2 block">
+                  <label htmlFor="facebook-profile" className="text-sm font-bold mb-2 block">
                     Facebook Profile URL
                   </label>
                   <Input
+                    id="facebook-profile"
                     type="url"
                     name="facebookProfile"
                     value={formData.facebookProfile}
@@ -219,10 +225,11 @@ export default function WhistleblowerSignupPage() {
                   </p>
                 </div>
                 <div>
-                  <label className="text-sm font-bold mb-2 block">
+                  <label htmlFor="instagram-profile" className="text-sm font-bold mb-2 block">
                     Instagram Profile URL
                   </label>
                   <Input
+                    id="instagram-profile"
                     type="url"
                     name="instagramProfile"
                     value={formData.instagramProfile}
@@ -247,7 +254,7 @@ export default function WhistleblowerSignupPage() {
                 </Button>
                 <Button
                   onClick={handleVerificationSubmit}
-                  className="flex-1 border-3 border-foreground bg-primary px-6 py-6 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
+                  className="flex-1 border-3 border-foreground bg-primary px-6 py-6 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
                 >
                   Submit for Review
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -323,7 +330,7 @@ export default function WhistleblowerSignupPage() {
                 </div>
 
                 <Link href="/whistleblower/dashboard">
-                  <Button className="w-full border-3 border-foreground bg-primary px-6 py-6 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+                  <Button className="w-full border-3 border-foreground bg-primary px-6 py-6 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                     Go to Dashboard
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
