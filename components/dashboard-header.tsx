@@ -24,7 +24,7 @@ export function DashboardHeader() {
           <Link href="/">
             <Button
               variant="outline"
-              className="border-2 border-foreground bg-transparent font-bold shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(26,26,26,1)]"
+              className="border-2 border-foreground bg-transparent font-bold shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-px hover:translate-y-px hover:shadow-[1px_1px_0px_0px_rgba(26,26,26,1)]"
             >
               <Home className="mr-2 h-4 w-4" />
               Home
@@ -33,7 +33,7 @@ export function DashboardHeader() {
           <Link href="/properties">
             <Button
               variant="outline"
-              className="border-2 border-foreground bg-transparent font-bold shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(26,26,26,1)]"
+              className="border-2 border-foreground bg-transparent font-bold shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-px hover:translate-y-px hover:shadow-[1px_1px_0px_0px_rgba(26,26,26,1)]"
             >
               <Building2 className="mr-2 h-4 w-4" />
               Properties
@@ -42,7 +42,7 @@ export function DashboardHeader() {
           <Link href="/calculator">
             <Button
               variant="outline"
-              className="border-2 border-foreground bg-transparent font-bold shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(26,26,26,1)]"
+              className="border-2 border-foreground bg-transparent font-bold shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-px hover:translate-y-px hover:shadow-[1px_1px_0px_0px_rgba(26,26,26,1)]"
             >
               <Calculator className="mr-2 h-4 w-4" />
               Calculator
