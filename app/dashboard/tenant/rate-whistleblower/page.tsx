@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, Star, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { tenantWhistleblowersToRate as whistleblowers } from "@/lib/mockData";
 
 export default function RateWhistleblowerPage() {
   const [step, setStep] = useState<"select" | "rate" | "confirmation">(
@@ -16,28 +17,6 @@ export default function RateWhistleblowerPage() {
   const [rating, setRating] = useState<number>(0);
   const [hoverRating, setHoverRating] = useState<number>(0);
   const [review, setReview] = useState("");
-
-  // Mock whistleblowers the tenant has rented from
-  const whistleblowers = [
-    {
-      id: 1,
-      name: "Chiamaka Okonkwo",
-      apartment: "Block 5, Flat 2B, Yaba",
-      rentDate: "Dec 15, 2024",
-      rating: 4.8,
-      reviews: 24,
-      hasRated: false,
-    },
-    {
-      id: 2,
-      name: "Adanna Smith",
-      apartment: "Block 3, Flat 1C, Yaba",
-      rentDate: "Nov 28, 2024",
-      rating: 4.9,
-      reviews: 18,
-      hasRated: true,
-    },
-  ];
 
   const rateableWhistleblowers = whistleblowers.filter((w) => !w.hasRated);
   const currentWhistleblower = whistleblowers.find(

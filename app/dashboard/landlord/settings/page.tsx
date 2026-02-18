@@ -25,6 +25,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { DashboardHeader } from "@/components/dashboard-header";
+import { landlordPaymentHistory } from "@/lib/mockData";
 
 export default function LandlordSettingsPage() {
   const [activeTab, setActiveTab] = useState<
@@ -366,23 +367,7 @@ export default function LandlordSettingsPage() {
                 <div className="border-t-2 border-foreground pt-6">
                   <h3 className="font-bold mb-4">Payment History</h3>
                   <div className="space-y-3">
-                    {[
-                      {
-                        date: "Dec 2024",
-                        amount: "₦5,700,000",
-                        status: "Received",
-                      },
-                      {
-                        date: "Nov 2024",
-                        amount: "₦5,700,000",
-                        status: "Received",
-                      },
-                      {
-                        date: "Oct 2024",
-                        amount: "₦3,500,000",
-                        status: "Received",
-                      },
-                    ].map((payment) => (
+                    {landlordPaymentHistory.map((payment) => (
                       <div
                         key={payment.date}
                         className="flex items-center justify-between border-b border-foreground/10 pb-3"

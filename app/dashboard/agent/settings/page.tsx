@@ -28,6 +28,7 @@ import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 import { DashboardHeader } from "@/components/dashboard-header"
+import { agentRecentPayouts } from "@/lib/mockData"
 
 export default function AgentSettingsPage() {
   const [activeTab, setActiveTab] = useState<"profile" | "notifications" | "security" | "payment">("profile")
@@ -397,11 +398,7 @@ export default function AgentSettingsPage() {
                 <div className="border-t-2 border-foreground pt-6">
                   <h3 className="font-bold mb-4">Recent Payouts</h3>
                   <div className="space-y-3">
-                    {[
-                      { date: "Jan 1, 2025", amount: "₦450,000", property: "Luxury 3BR Apartment", status: "Paid" },
-                      { date: "Dec 1, 2024", amount: "₦380,000", property: "Modern 2BR Flat", status: "Paid" },
-                      { date: "Nov 1, 2024", amount: "₦290,000", property: "Studio Apartment", status: "Paid" },
-                    ].map((payout) => (
+                    {agentRecentPayouts.map((payout) => (
                       <div key={payout.date} className="flex items-center justify-between border-b border-foreground/10 pb-3">
                         <div>
                           <p className="font-bold">{payout.property}</p>
