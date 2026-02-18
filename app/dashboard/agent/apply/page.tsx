@@ -172,7 +172,7 @@ export default function AgentApplyPage() {
               <Button
                 type="submit"
                 disabled={!agreeToTerms}
-                className="w-full border-3 border-foreground bg-primary py-4 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] disabled:opacity-50"
+                className="w-full border-3 border-foreground bg-primary py-4 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] disabled:opacity-50"
               >
                 <Send className="mr-2 h-4 w-4" />
                 Submit Application

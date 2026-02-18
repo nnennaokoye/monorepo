@@ -5,7 +5,6 @@ import Link from "next/link"
 import {
   Home,
   Building2,
-  Users,
   MessageSquare,
   Settings,
   MapPin,
@@ -160,7 +159,9 @@ export default function AgentDashboard() {
 
       {/* Mobile Overlay */}
       {sidebarOpen && (
-        <div 
+        <button
+          type="button"
+          aria-label="Close sidebar"
           className="fixed inset-0 z-40 bg-foreground/50 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
@@ -292,7 +293,7 @@ export default function AgentDashboard() {
               }`}
             >
               Applications
-              {myApplications.filter((a) => a.status === "pending").length > 0 && (
+              {myApplications.some((a) => a.status === "pending") && (
                 <span className="ml-2 inline-flex h-5 w-5 items-center justify-center border-2 border-foreground bg-accent text-xs md:h-6 md:w-6">
                   {myApplications.filter((a) => a.status === "pending").length}
                 </span>
@@ -372,7 +373,7 @@ export default function AgentDashboard() {
                               <MessageSquare className="h-4 w-4" /> {property.inquiries} inquiries
                             </span>
                             <Link href={`/properties/${property.id}`}>
-                              <Button className="border-3 border-foreground bg-secondary text-sm font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+                              <Button className="border-3 border-foreground bg-secondary text-sm font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                                 <Eye className="mr-2 h-4 w-4" />
                                 View
                               </Button>
@@ -471,7 +472,7 @@ export default function AgentDashboard() {
                             <span className="text-sm font-normal text-muted-foreground">/year</span>
                           </p>
                           <Link href="/dashboard/agent/apply">
-                            <Button className="border-3 border-foreground bg-primary font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+                            <Button className="border-3 border-foreground bg-primary font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                               <Send className="mr-2 h-4 w-4" />
                               Apply to Manage
                             </Button>
@@ -493,38 +494,46 @@ export default function AgentDashboard() {
                   key={application.id}
                   className="border-3 border-foreground p-6 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]"
                 >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-lg font-bold">{application.property}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        Landlord: {application.landlord} • Applied {application.appliedAt}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <div
-                        className={`flex items-center gap-2 border-3 border-foreground px-4 py-2 font-bold ${
-                          application.status === "accepted"
-                            ? "bg-secondary"
-                            : application.status === "pending"
-                              ? "bg-accent"
-                              : "bg-muted"
-                        }`}
-                      >
-                        {application.status === "accepted" && <CheckCircle className="h-4 w-4" />}
-                        {application.status === "pending" && <Clock className="h-4 w-4" />}
-                        {application.status === "declined" && <XCircle className="h-4 w-4" />}
-                        <span className="capitalize">{application.status}</span>
+                  {(() => {
+                    let statusClass = "bg-muted";
+                    if (application.status === "accepted") statusClass = "bg-secondary";
+                    else if (application.status === "pending") statusClass = "bg-accent";
+
+                    return (
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h3 className="text-lg font-bold">{application.property}</h3>
+                          <p className="text-sm text-muted-foreground">
+                            Landlord: {application.landlord} • Applied {application.appliedAt}
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-4">
+                          <div
+                            className={`flex items-center gap-2 border-3 border-foreground px-4 py-2 font-bold ${statusClass}`}
+                          >
+                            {application.status === "accepted" && (
+                              <CheckCircle className="h-4 w-4" />
+                            )}
+                            {application.status === "pending" && (
+                              <Clock className="h-4 w-4" />
+                            )}
+                            {application.status === "declined" && (
+                              <XCircle className="h-4 w-4" />
+                            )}
+                            <span className="capitalize">{application.status}</span>
+                          </div>
+                          {application.status === "pending" && (
+                            <Button
+                              variant="outline"
+                              className="border-3 border-foreground bg-transparent font-bold"
+                            >
+                              Withdraw
+                            </Button>
+                          )}
+                        </div>
                       </div>
-                      {application.status === "pending" && (
-                        <Button
-                          variant="outline"
-                          className="border-3 border-foreground bg-transparent font-bold"
-                        >
-                          Withdraw
-                        </Button>
-                      )}
-                    </div>
-                  </div>
+                    );
+                  })()}
                 </Card>
               ))}
             </div>

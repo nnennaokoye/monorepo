@@ -5,7 +5,6 @@ import Link from "next/link"
 import {
   Home,
   Building2,
-  Users,
   MessageSquare,
   Settings,
   MapPin,
@@ -263,7 +262,7 @@ export default function AgentPropertiesPage() {
                   className="border-3 border-foreground p-0 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]"
                 >
                   <div className="flex">
-                    <div className="relative h-48 w-72 flex-shrink-0 border-r-3 border-foreground bg-muted">
+                    <div className="relative h-48 w-72 shrink-0 border-r-3 border-foreground bg-muted">
                       <div className="flex h-full items-center justify-center">
                         <Building2 className="h-16 w-16 text-muted-foreground" />
                       </div>
@@ -325,7 +324,7 @@ export default function AgentPropertiesPage() {
                           </span>
                         </div>
                         <Link href={`/properties/${property.id}`}>
-                          <Button className="border-3 border-foreground bg-secondary font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+                          <Button className="border-3 border-foreground bg-secondary font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                             <Eye className="mr-2 h-4 w-4" />
                             View Listing
                           </Button>

@@ -149,24 +149,27 @@ export default function AgentSettingsPage() {
 
                   <div className="grid gap-6 md:grid-cols-2">
                     <div className="space-y-2">
-                      <Label className="font-bold">Full Name</Label>
+                      <Label htmlFor="full-name" className="font-bold">Full Name</Label>
                       <Input
+                        id="full-name"
                         defaultValue="Adebayo Johnson"
                         className="border-3 border-foreground bg-background py-5 shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label className="font-bold">License Number</Label>
+                      <Label htmlFor="license-number" className="font-bold">License Number</Label>
                       <Input
+                        id="license-number"
                         defaultValue="NIESV-2024-12345"
                         className="border-3 border-foreground bg-background py-5 shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label className="font-bold">Email Address</Label>
+                      <Label htmlFor="email" className="font-bold">Email Address</Label>
                       <div className="relative">
                         <Mail className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
                         <Input
+                          id="email"
                           type="email"
                           defaultValue="adebayo.j@sheltaflex.com"
                           className="border-3 border-foreground bg-background py-5 pl-12 shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
@@ -174,28 +177,31 @@ export default function AgentSettingsPage() {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label className="font-bold">Phone Number</Label>
+                      <Label htmlFor="phone" className="font-bold">Phone Number</Label>
                       <div className="relative">
                         <Phone className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
                         <Input
+                          id="phone"
                           defaultValue="+234 802 345 6789"
                           className="border-3 border-foreground bg-background py-5 pl-12 shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
                         />
                       </div>
                     </div>
                     <div className="space-y-2 md:col-span-2">
-                      <Label className="font-bold">Office Address</Label>
+                      <Label htmlFor="office-address" className="font-bold">Office Address</Label>
                       <div className="relative">
                         <MapPin className="absolute left-4 top-4 h-5 w-5 text-muted-foreground" />
                         <Input
+                          id="office-address"
                           defaultValue="25 Marina Street, Lagos Island, Lagos"
                           className="border-3 border-foreground bg-background py-5 pl-12 shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
                         />
                       </div>
                     </div>
                     <div className="space-y-2 md:col-span-2">
-                      <Label className="font-bold">Bio</Label>
+                      <Label htmlFor="bio" className="font-bold">Bio</Label>
                       <Textarea
+                        id="bio"
                         defaultValue="Experienced property agent with 5+ years in the Lagos real estate market. Specializing in luxury apartments and commercial properties in Victoria Island, Lekki, and Ikoyi areas."
                         className="min-h-[120px] border-3 border-foreground bg-background shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
                       />
@@ -203,7 +209,7 @@ export default function AgentSettingsPage() {
                   </div>
 
                   <div className="mt-6 flex justify-end">
-                    <Button className="border-3 border-foreground bg-primary px-6 py-5 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+                    <Button className="border-3 border-foreground bg-primary px-6 py-5 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                       <Save className="mr-2 h-4 w-4" />
                       Save Changes
                     </Button>
@@ -289,9 +295,10 @@ export default function AgentSettingsPage() {
                   <h3 className="font-bold">Change Password</h3>
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="space-y-2">
-                      <Label>Current Password</Label>
+                      <Label htmlFor="current-password">Current Password</Label>
                       <div className="relative">
                         <Input
+                          id="current-password"
                           type={showPassword ? "text" : "password"}
                           className="border-3 border-foreground bg-background py-5 pr-12 shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
                         />
@@ -306,15 +313,17 @@ export default function AgentSettingsPage() {
                     </div>
                     <div />
                     <div className="space-y-2">
-                      <Label>New Password</Label>
+                      <Label htmlFor="new-password">New Password</Label>
                       <Input
+                        id="new-password"
                         type="password"
                         className="border-3 border-foreground bg-background py-5 shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label>Confirm New Password</Label>
+                      <Label htmlFor="confirm-new-password">Confirm New Password</Label>
                       <Input
+                        id="confirm-new-password"
                         type="password"
                         className="border-3 border-foreground bg-background py-5 shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
                       />
