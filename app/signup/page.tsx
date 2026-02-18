@@ -44,9 +44,9 @@ export default function SignupPage() {
 
           {/* User Type Selector */}
           <div className="mb-6">
-            <label className="mb-2 block font-mono text-sm font-bold">
+            <p className="mb-2 block font-mono text-sm font-bold">
               I am a
-            </label>
+            </p>
             <div className="grid grid-cols-2 gap-3">
               <button
                 type="button"
@@ -54,7 +54,7 @@ export default function SignupPage() {
                 className={`border-3 border-foreground p-4 font-mono font-bold transition-all ${
                   userType === "tenant"
                     ? "bg-primary text-primary-foreground shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]"
-                    : "bg-background shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
+                    : "bg-background shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
                 }`}
               >
                 Tenant
@@ -65,7 +65,7 @@ export default function SignupPage() {
                 className={`border-3 border-foreground p-4 font-mono font-bold transition-all ${
                   userType === "landlord"
                     ? "bg-primary text-primary-foreground shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]"
-                    : "bg-background shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
+                    : "bg-background shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
                 }`}
               >
                 Landlord
@@ -79,7 +79,7 @@ export default function SignupPage() {
               Or earn money reporting vacant apartments:
             </p>
             <Link href="/whistleblower/signup">
-              <Button className="w-full border-3 border-foreground bg-secondary px-4 py-3 font-mono font-bold transition-all shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+              <Button className="w-full border-3 border-foreground bg-secondary px-4 py-3 font-mono font-bold transition-all shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                 Become a Whistleblower
               </Button>
             </Link>
@@ -87,58 +87,62 @@ export default function SignupPage() {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="mb-2 block font-mono text-sm font-bold">
+              <label htmlFor="full-name" className="mb-2 block font-mono text-sm font-bold">
                 Full Name
               </label>
               <Input
+                id="full-name"
                 type="text"
                 value={formData.fullName}
                 onChange={(e) => updateFormData("fullName", e.target.value)}
                 placeholder="Enter your full name"
-                className="border-3 border-foreground py-6 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] focus:translate-x-[2px] focus:translate-y-[2px] focus:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
+                className="border-3 border-foreground py-6 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] focus:translate-x-0.5 focus:translate-y-0.5 focus:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
                 required
               />
             </div>
 
             <div>
-              <label className="mb-2 block font-mono text-sm font-bold">
+              <label htmlFor="email" className="mb-2 block font-mono text-sm font-bold">
                 Email Address
               </label>
               <Input
+                id="email"
                 type="email"
                 value={formData.email}
                 onChange={(e) => updateFormData("email", e.target.value)}
                 placeholder="you@email.com"
-                className="border-3 border-foreground py-6 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] focus:translate-x-[2px] focus:translate-y-[2px] focus:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
+                className="border-3 border-foreground py-6 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] focus:translate-x-0.5 focus:translate-y-0.5 focus:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
                 required
               />
             </div>
 
             <div>
-              <label className="mb-2 block font-mono text-sm font-bold">
+              <label htmlFor="phone" className="mb-2 block font-mono text-sm font-bold">
                 Phone Number
               </label>
               <Input
+                id="phone"
                 type="tel"
                 value={formData.phone}
                 onChange={(e) => updateFormData("phone", e.target.value)}
                 placeholder="08X XXX XXXX"
-                className="border-3 border-foreground py-6 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] focus:translate-x-[2px] focus:translate-y-[2px] focus:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
+                className="border-3 border-foreground py-6 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] focus:translate-x-0.5 focus:translate-y-0.5 focus:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
                 required
               />
             </div>
 
             <div>
-              <label className="mb-2 block font-mono text-sm font-bold">
+              <label htmlFor="password" className="mb-2 block font-mono text-sm font-bold">
                 Password
               </label>
               <div className="relative">
                 <Input
+                  id="password"
                   type={showPassword ? "text" : "password"}
                   value={formData.password}
                   onChange={(e) => updateFormData("password", e.target.value)}
                   placeholder="Create a password"
-                  className="border-3 border-foreground py-6 pr-12 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] focus:translate-x-[2px] focus:translate-y-[2px] focus:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
+                  className="border-3 border-foreground py-6 pr-12 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] focus:translate-x-0.5 focus:translate-y-0.5 focus:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
                   required
                 />
                 <button
@@ -213,7 +217,7 @@ export default function SignupPage() {
 
             <Button
               type="submit"
-              className={`w-full border-3 border-foreground px-8 py-6 text-lg font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] ${
+              className={`w-full border-3 border-foreground px-8 py-6 text-lg font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] ${
                 userType === "tenant" ? "bg-primary" : "bg-secondary"
               }`}
             >
